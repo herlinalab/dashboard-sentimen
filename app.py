@@ -45,7 +45,7 @@ selected_sentiment = st.sidebar.multiselect(
 )
 
 # FILTER DATA
-filtered_df = df[df['sentiment'].isin(selected_sentiment)]
+filtered_df = df[df['sentiment_label'].isin(selected_sentiment)]
 
 # =====================================
 # METRIC CARDS
