@@ -57,7 +57,7 @@ positif = (filtered_df['sentiment'] == 1).sum()
 netral = (filtered_df['sentiment'] == 2).sum()
 negatif = (filtered_df['sentiment'] == 0).sum()
 
-col1, col2, col3, col4 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 col1.metric("Total Data", total_data)
 col2.metric("😊 Positif", positif)
