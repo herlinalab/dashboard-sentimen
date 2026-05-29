@@ -127,7 +127,7 @@ st.divider()
 # =====================================
 st.subheader("☁️ Word Cloud")
 
-text = " ".join(filtered_df['cleaned_text'].astype(str))
+text = " ".join(filtered_df['clean_text'].astype(str))
 
 wordcloud = WordCloud(
     width=1000,
