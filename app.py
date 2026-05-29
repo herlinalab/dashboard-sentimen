@@ -26,9 +26,9 @@ df['sentiment_label'] = df['sentiment'].map({
 # =====================================
 # HEADER
 # =====================================
-st.title("📊 Dashboard Analisis Sentimen")
+st.title("📊 Perspektif Masyarakat Terhadap Kebijakan WFH ASN di Hari Jumat")
 st.markdown(
-    "Dashboard interaktif untuk visualisasi hasil analisis sentimen."
+    "analisis sentimen berdasarkan komentar di Instagram."
 )
 
 st.divider()
