@@ -16,7 +16,12 @@ st.set_page_config(
 # =====================================
 # LOAD DATA
 # =====================================
-df = pd.read_csv("hasil_sentimen.csv")
+df = pd.read_csv("hasil_sentimen.csv")s
+df['sentiment_label'] = df['sentiment'].map({
+    1: 'Positif',
+    0: 'Negatif',
+    2: 'Netral'
+})
 
 # =====================================
 # HEADER
@@ -35,8 +40,8 @@ st.sidebar.title("⚙️ Menu Dashboard")
 
 selected_sentiment = st.sidebar.multiselect(
     "Filter Sentimen",
-    options=df['sentiment'].unique(),
-    default=df['sentiment'].unique()
+    options=df['sentiment_label'].unique(),
+    default=df['sentiment_label'].unique()
 )
 
 # FILTER DATA
@@ -45,44 +50,26 @@ filtered_df = df[df['sentiment'].isin(selected_sentiment)]
 # =====================================
 # METRIC CARDS
 # =====================================
+
 total_data = len(filtered_df)
 
-positif = (
-    filtered_df['sentiment']
-    .str.lower()
-    .eq('positif')
-    .sum()
-)
+positif = (filtered_df['sentiment'] == 1).sum()
+netral = (filtered_df['sentiment'] == 2).sum()
+negatif = (filtered_df['sentiment'] == 0).sum()
 
-negatif = (
-    filtered_df['sentiment']
-    .str.lower()
-    .eq('negatif')
-    .sum()
-)
-
-netral = (
-    filtered_df['sentiment']
-    .str.lower()
-    .eq('netral')
-    .sum()
-)
-
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4 = st.columns(3)
 
 col1.metric("Total Data", total_data)
 col2.metric("😊 Positif", positif)
 col3.metric("😠 Negatif", negatif)
-col4.metric("😐 Netral", netral)
-
-st.divider()
+col4.metric("😶 Netral", netral)
 
 # =====================================
 # VISUALISASI
 # =====================================
 st.subheader("📈 Visualisasi Sentimen")
 
-sentiment_count = filtered_df['sentiment'].value_counts()
+sentiment_count = filtered_df['sentiment_label'].value_counts()
 
 col_chart1, col_chart2 = st.columns(2)
 
@@ -142,7 +129,6 @@ st.divider()
 # =====================================
 st.subheader("☁️ Word Cloud")
 
-# GANTI 'cleaned_text' JIKA NAMA KOLOM BERBEDA
 text = " ".join(filtered_df['cleaned_text'].astype(str))
 
 wordcloud = WordCloud(
