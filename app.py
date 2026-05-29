@@ -16,7 +16,7 @@ st.set_page_config(
 # =====================================
 # LOAD DATA
 # =====================================
-df = pd.read_csv("hasil_sentimen.csv")s
+df = pd.read_csv("hasil_sentimen.csv")
 df['sentiment_label'] = df['sentiment'].map({
     1: 'Positif',
     0: 'Negatif',
