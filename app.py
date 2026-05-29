@@ -69,8 +69,14 @@ col4.metric("😶 Netral", netral)
 # =====================================
 st.subheader("📈 Visualisasi Sentimen")
 
-sentiment_count = filtered_df['sentiment_label'].value_counts()
+sentiment_count = filtered_df[
+    'sentiment_label'
+].value_counts().reset_index()
 
+sentiment_count.columns = [
+    'Sentimen',
+    'Jumlah'
+]
 col_chart1, col_chart2 = st.columns(2)
 
 # =====================================
@@ -79,27 +85,22 @@ col_chart1, col_chart2 = st.columns(2)
 with col_chart1:
 
     fig_bar = px.bar(
-        x=sentiment_count.index,
-        y=sentiment_count.values,
-        color=sentiment_count.index,
-        text=sentiment_count.values,
-        labels={
-            'x': 'Sentimen',
-            'y': 'Jumlah'
-        },
-        title='Distribusi Sentimen'
-    )
+    sentiment_count,
+    x='Sentimen',
+    y='Jumlah',
+    color='Sentimen',
+    text='Jumlah',
+    title='Distribusi Sentimen'
+)
 
-    fig_bar.update_traces(textposition='outside')
+fig_bar.update_traces(
+    textposition='outside'
+)
 
-    fig_bar.update_layout(
-        height=500
-    )
-
-    st.plotly_chart(
-        fig_bar,
-        use_container_width=True
-    )
+st.plotly_chart(
+    fig_bar,
+    use_container_width=True
+)
 
 # =====================================
 # PIE CHART
@@ -107,20 +108,17 @@ with col_chart1:
 with col_chart2:
 
     fig_pie = px.pie(
-        values=sentiment_count.values,
-        names=sentiment_count.index,
-        title='Persentase Sentimen',
-        hole=0.4
-    )
+    sentiment_count,
+    values='Jumlah',
+    names='Sentimen',
+    title='Persentase Sentimen',
+    hole=0.4
+)
 
-    fig_pie.update_layout(
-        height=500
-    )
-
-    st.plotly_chart(
-        fig_pie,
-        use_container_width=True
-    )
+st.plotly_chart(
+    fig_pie,
+    use_container_width=True
+)
 
 st.divider()
 
