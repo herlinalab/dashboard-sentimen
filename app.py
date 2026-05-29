@@ -466,17 +466,17 @@ for label, col in [('Positif', col_i3a), ('Netral', col_i3b), ('Negatif', col_i3
         kw_bg_c  = kw_bg[label]
 
         if label == 'Positif':
-            narasi = (f"Kata-kata dominan seperti <b>"{k1}"</b>, <b>"{k2}"</b>, dan <b>"{k3}"</b> "
+            narasi = (f'Kata-kata dominan seperti <b>"{k1}"</b>, <b>"{k2}"</b>, dan <b>"{k3}"</b> '
                       f"mencerminkan ekspresi dukungan dan apresiasi masyarakat terhadap kebijakan WFH ASN. "
                       f"Kehadiran kata-kata ini mengindikasikan bahwa sebagian publik melihat kebijakan ini "
                       f"sebagai langkah yang menguntungkan dan patut disambut baik.")
         elif label == 'Negatif':
-            narasi = (f"Kata-kata seperti <b>"{k1}"</b>, <b>"{k2}"</b>, dan <b>"{k3}"</b> "
+            narasi = (f'Kata-kata seperti <b>"{k1}"</b>, <b>"{k2}"</b>, dan <b>"{k3}"</b> '
                       f"muncul paling sering dalam komentar bernada negatif. "
                       f"Ini mengindikasikan kekhawatiran atau ketidaksetujuan publik, kemungkinan terkait "
                       f"efektivitas layanan ASN, produktivitas, atau dampak WFH terhadap kinerja pemerintah.")
         else:
-            narasi = (f"Pada komentar netral, kata <b>"{k1}"</b>, <b>"{k2}"</b>, dan <b>"{k3}"</b> "
+            narasi = (f'Pada komentar netral, kata <b>"{k1}"</b>, <b>"{k2}"</b>, dan <b>"{k3}"</b> '
                       f"paling sering muncul. Komentar netral umumnya berisi pertanyaan, pernyataan fakta, "
                       f"atau observasi tanpa opini yang jelas — menunjukkan sebagian publik masih "
                       f"bersikap wait-and-see terhadap kebijakan ini.")
